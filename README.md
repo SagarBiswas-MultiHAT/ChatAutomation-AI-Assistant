@@ -1,5 +1,11 @@
 # Chat Automation Bot
 
+<div align="enter">
+
+![CI](https://github.com/SagarBiswas-MultiHAT/ChatAutomation-AI-Assistant/actions/workflows/ci.yml/badge.svg)
+
+</div>
+
 Video demo(old-version): https://www.facebook.com/share/v/1PCci8RnYD/
 
 This project automates chat replies (e.g., Messenger, WhatsApp) using screen automation with PyAutoGUI, clipboard handling via Pyperclip, and AI-generated responses powered by Groq. After starting, the program automatically clicks the chat icon at a predefined screen position, then continuously cycles through multiple chat slots by clicking different coordinates one by one, triggering chat automation scans for each conversation. It scans each chat for new incoming messages, generates and sends appropriate replies, skips responding if the last message was sent by the chatBot, and then moves on to the next chat. Once all configured chat positions are scanned, the process loops back to the first chat, enabling continuous, hands-free monitoring and automated replying across multiple conversations.
@@ -38,7 +44,7 @@ Together, these features help ensure reliable automation, safer testing, and cle
 1. **Clone the repo**
 
    ```bash
-   git clone https://github.com/SagarBiswas-MultiHAT/Chat-Automation-Bot.git
+   git clone https://github.com/SagarBiswas-MultiHAT/ChatAutomation-AI-Assistant.git
    cd Chat-Automation-Bot
    ```
 
