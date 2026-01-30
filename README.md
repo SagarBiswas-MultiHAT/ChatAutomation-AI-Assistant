@@ -6,6 +6,15 @@ This project automates chat replies (e.g., Messenger, WhatsApp) using screen aut
 
 ---
 
+## Dry-run mode and logging (why it matters)
+
+This project includes a **dry-run mode** and **logging** to support safe testing and debugging.
+
+- **Dry-run mode** allows the bot to scan chats, detect the last sender, and decide whether a reply should be sent **without clicking, typing, or sending messages**. This makes it safe to test logic and demonstrate behavior without affecting real conversations.
+- **Logging** records key actions such as chat scans, reply decisions (sent or skipped), and errors, making it easier to debug issues and understand the bot’s behavior during execution.
+
+Together, these features help ensure reliable automation, safer testing, and clearer insight into how the bot operates.
+
 ## What it does (at a glance)
 
 - Continuously scans the selected chat area for new messages.
