@@ -8,7 +8,10 @@ import time
 from dataclasses import dataclass
 from typing import Any, Dict, Optional
 
-import pyautogui
+try:
+  import pyautogui
+except Exception:  # pragma: no cover - optional for headless environments
+  pyautogui = None
 import pyperclip
 from groq import Groq
 
@@ -128,16 +131,22 @@ def require_api_key() -> str:
 
 
 def click_point(point: list, delay: float) -> None:
+  if pyautogui is None:
+    raise RuntimeError("pyautogui is unavailable. Run without --dry-run only on a GUI desktop.")
   pyautogui.click(point[0], point[1])
   time.sleep(delay)
 
 
 def select_chat_text(start: list, end: list, drag_duration: float) -> None:
+  if pyautogui is None:
+    raise RuntimeError("pyautogui is unavailable. Run without --dry-run only on a GUI desktop.")
   pyautogui.moveTo(start[0], start[1])
   pyautogui.dragTo(end[0], end[1], duration=drag_duration)
 
 
 def copy_chat_history(retries: int, retry_delay: float) -> str:
+  if pyautogui is None:
+    raise RuntimeError("pyautogui is unavailable. Run without --dry-run only on a GUI desktop.")
   pyautogui.hotkey("ctrl", "c")
   pyautogui.click()
   for attempt in range(1, retries + 1):
@@ -271,6 +280,8 @@ def get_last_sender_marker(lines: list[str], my_name: str) -> str:
 
 
 def paste_response(text: str, input_box: list, timing: Dict[str, float]) -> None:
+  if pyautogui is None:
+    raise RuntimeError("pyautogui is unavailable. Run without --dry-run only on a GUI desktop.")
   pyperclip.copy(text)
   click_point(input_box, timing["after_focus"])
   pyautogui.hotkey("ctrl", "v")
@@ -281,6 +292,8 @@ def paste_response(text: str, input_box: list, timing: Dict[str, float]) -> None
 def run_bot(config: BotConfig, dry_run: bool) -> None:
   client: Optional[Groq] = None
   if not dry_run:
+    if pyautogui is None:
+      raise RuntimeError("pyautogui is unavailable. This script requires a GUI desktop.")
     api_key = require_api_key()
     client = Groq(api_key=api_key)
 
