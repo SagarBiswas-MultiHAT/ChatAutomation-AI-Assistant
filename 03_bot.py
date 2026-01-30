@@ -381,8 +381,9 @@ def main() -> int:
   args = parse_args()
   setup_logging(args.verbose)
 
-  pyautogui.FAILSAFE = True
-  pyautogui.PAUSE = 0.1
+  if pyautogui is not None:
+    pyautogui.FAILSAFE = True
+    pyautogui.PAUSE = 0.1
 
   try:
     config = load_config(args.config)
